@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Assistant</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #1c1e21;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        h1, h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        .step {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        textarea, input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .hidden {
+            display: none;
+        }
+        .status-box {
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI-Powered Study Assistant</h1>
+
+        <!-- Step 1: File & Topic Input -->
+        <div class="step">
+            <h2>Step 1: Provide Your Notes & Topics</h2>
+            <label for="file-input">Select Markdown Files (.md):</label>
+            <input type="file" id="file-input" multiple webkitdirectory directory>
+            <p>Select the folder containing your markdown notes.</p>
+
+            <label for="user-topics">Important Topics (one per line):</label>
+            <textarea id="user-topics" rows="5" placeholder="e.g., Photosynthesis, The Calvin Cycle"></textarea>
+
+            <label for="api-key">Gemini API Key:</label>
+            <input type="text" id="api-key" placeholder="Enter your Google AI API Key">
+
+            <label for="model-select">Select AI Model:</label>
+            <select id="model-select">
+                <option value="gemini-1.5-flash-latest">Gemini 1.5 Flash</option>
+                <option value="gemini-1.5-pro-latest">Gemini 1.5 Pro</option>
+            </select>
+        </div>
+
+        <!-- Step 2: Topic Selection & Refinement -->
+        <div class="step">
+            <h2>Step 2: Generate & Refine Topic List</h2>
+            <button id="generate-topics-btn">Generate Topic List</button>
+            <div id="topic-selection-status" class="status-box hidden"></div>
+            <div id="refinement-controls" class="hidden">
+                <h3>Review AI's Selection</h3>
+                <div id="selected-topics-output" class="status-box"></div>
+                <button id="critique-btn">Critique Selection</button>
+                <button id="accept-topics-btn">Accept & Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Content Chunking -->
+        <div id="chunking-step" class="step hidden">
+            <h2>Step 3: Chunk Content for Processing</h2>
+            <label for="token-limit">Token Limit per Chunk:</label>
+            <input type="number" id="token-limit" value="5000">
+            <button id="chunk-content-btn">Chunk Content</button>
+            <div id="chunking-status" class="status-box hidden"></div>
+        </div>
+
+        <!-- Step 4: Flashcard Generation -->
+        <div id="flashcard-step" class="step hidden">
+            <h2>Step 4: Generate Anki Flashcards</h2>
+            <label for="anki-deck">Anki Main Deck Name:</label>
+            <input type="text" id="anki-deck" placeholder="e.g., Biology Notes">
+            <label for="anki-connect-url">AnkiConnect URL:</label>
+            <input type="text" id="anki-connect-url" value="http://localhost:8765">
+            <button id="generate-flashcards-btn">Generate & Add to Anki</button>
+            <div id="flashcard-status" class="status-box hidden"></div>
+        </div>
+
+    </div>
+
+    <!-- The JavaScript file will be added in the next step -->
+    <script src="/script.js"></script>
+</body>
+</html>

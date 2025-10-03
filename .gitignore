@@ -1,0 +1,17 @@
+# Python bytecode
+*.pyc
+__pycache__/
+
+# IDE and editor directories
+.vscode/
+.idea/
+
+# Environment folders
+venv/
+.env
+
+# Scratch directory for verification scripts
+jules-scratch/
+
+# Log files
+*.log
